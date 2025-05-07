@@ -1,5 +1,8 @@
+const { Sequelize } = require('sequelize'); // Assurez-vous que le point-virgule est présent
+
+// database
 const sequelize = new Sequelize(
-  process.env.DATABASE_URL, 
+  process.env.DATABASE_URL, // Utiliser la variable d'environnement au lieu de l'URL en dur
   {
     dialectOptions: {
       ssl: {
@@ -10,6 +13,7 @@ const sequelize = new Sequelize(
   }
 );
 
+// authentication and synchronization
 sequelize.authenticate()
 .then(() => {
   sequelize.sync().catch(() => console.log("Cannot sync the database"));
